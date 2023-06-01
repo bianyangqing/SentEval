@@ -12,13 +12,16 @@ import io
 import numpy as np
 import logging
 
+import os
 
 # Set PATHs
-PATH_TO_SENTEVAL = '../'
-PATH_TO_DATA = '../data'
+# PATH_TO_SENTEVAL = '../'
+PATH_TO_SENTEVAL = os.environ.get('PATH_TO_SENTEVAL')
+# PATH_TO_DATA = '../data'
+PATH_TO_DATA = os.environ.get('PATH_TO_DATA')
 # PATH_TO_VEC = 'glove/glove.840B.300d.txt'
-PATH_TO_VEC = 'fasttext/crawl-300d-2M.vec'
-
+# PATH_TO_VEC = 'fasttext/crawl-300d-2M.vec'
+PATH_TO_VEC = os.environ.get('PATH_TO_VEC')
 # import SentEval
 sys.path.insert(0, PATH_TO_SENTEVAL)
 import senteval
