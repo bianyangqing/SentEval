@@ -106,7 +106,7 @@ logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG)
 if __name__ == "__main__":
     se = senteval.engine.SE(params_senteval, batcher, prepare)
     transfer_tasks = [
-                      'MR'
+                      'STS14'
 #         , 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
 #                       'SICKEntailment', 'SICKRelatedness',
 #                       'Length', 'WordContent', 'Depth', 'TopConstituents',
