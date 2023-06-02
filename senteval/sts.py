@@ -27,6 +27,8 @@ class STSEval(object):
     def loadFile(self, fpath):
         self.data = {}
         self.samples = []
+        
+        print('fpath:' + fpath)
 
         for dataset in self.datasets:
             sent1, sent2 = zip(*[l.split("\t") for l in
