@@ -29,6 +29,7 @@ class STSEval(object):
         self.samples = []
         
         print('fpath:' + fpath)
+        fpath = fpath + '/sts-en-test-gs-2014'
 
         for dataset in self.datasets:
             sent1, sent2 = zip(*[l.split("\t") for l in
