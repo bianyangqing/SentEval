@@ -22,8 +22,8 @@ from models import InferSent
 # Set PATHs
 PATH_SENTEVAL = '../'
 PATH_TO_DATA = '../data'
-PATH_TO_W2V = 'PATH/TO/glove.840B.300d.txt'  # or crawl-300d-2M.vec for V2
-MODEL_PATH = 'infersent1.pkl'
+PATH_TO_W2V = os.environ.get('PATH_TO_VEC')  # or crawl-300d-2M.vec for V2
+MODEL_PATH = os.environ.get('MODEL_PATH')
 V = 1 # version of InferSent
 
 assert os.path.isfile(MODEL_PATH) and os.path.isfile(PATH_TO_W2V), \
@@ -66,11 +66,14 @@ if __name__ == "__main__":
     params_senteval['infersent'] = model.cuda()
 
     se = senteval.engine.SE(params_senteval, batcher, prepare)
-    transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16',
-                      'MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
-                      'SICKEntailment', 'SICKRelatedness', 'STSBenchmark',
-                      'Length', 'WordContent', 'Depth', 'TopConstituents',
-                      'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
-                      'OddManOut', 'CoordinationInversion']
+    transfer_tasks = [
+        'STS14'
+#         'STS12', 'STS13', 'STS14', 'STS15', 'STS16',
+#                       'MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
+#                       'SICKEntailment', 'SICKRelatedness', 'STSBenchmark',
+#                       'Length', 'WordContent', 'Depth', 'TopConstituents',
+#                       'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
+#                       'OddManOut', 'CoordinationInversion'
+    ]
     results = se.eval(transfer_tasks)
     print(results)
