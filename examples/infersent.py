@@ -41,7 +41,7 @@ def prepare(params, samples):
 
 def batcher(params, batch):
     
-    logging.info(f"prepare:{batch}")
+    logging.info(f"batcher:{batch}")
     sentences = [' '.join(s) for s in batch]
     embeddings = params.infersent.encode(sentences, bsize=params.batch_size, tokenize=False)
     return embeddings
