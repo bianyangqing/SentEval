@@ -20,7 +20,7 @@ from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
 
 tokenizer = AutoTokenizer.from_pretrained('intfloat/e5-large-v2')
-model = AutoModel.from_pretrained('intfloat/e5-large-v2', device="cuda")
+model = AutoModel.from_pretrained('intfloat/e5-large-v2')
 
 # Set PATHs
 PATH_TO_SENTEVAL = '../'
