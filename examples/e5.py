@@ -15,6 +15,7 @@ from __future__ import absolute_import, division, unicode_literals
 import sys
 import logging
 
+import numpy as np
 from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
 
@@ -49,6 +50,9 @@ def batcher(params, batch):
 
     outputs = model(**batch_dict)
     embeddings = average_pool(outputs.last_hidden_state, batch_dict['attention_mask'])
+    
+    print(f"batcher type:{type(embeddings)}")
+    print(f"batcher embeddings:{np.shape(embeddings)}")
     return embeddings
 
 
