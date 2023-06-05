@@ -15,6 +15,7 @@ from __future__ import absolute_import, division, unicode_literals
 import sys
 import logging
 
+import numpy as np
 from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
 
@@ -48,12 +49,15 @@ def batcher(params, batch):
     batch_dict = tokenizer(batch, max_length=512, padding=True, truncation=True, return_tensors='pt')
 
     outputs = model(**batch_dict)
-    embeddings = average_pool(outputs.last_hidden_state, batch_dict['attention_mask'])
+    embeddings = average_pool(outputs.last_hidden_state, batch_dict['attention_mask']).detach()
+    
+#     print(f"batcher type:{type(embeddings)}")
+#     print(f"batcher embeddings:{np.shape(embeddings)}")
     return embeddings
 
 
 # define senteval params
-params_senteval = {'task_path': PATH_TO_DATA, 'usepytorch': False, 'kfold': 5}
+params_senteval = {'task_path': PATH_TO_DATA, 'usepytorch': True, 'kfold': 5}
 params_senteval['classifier'] = {'nhid': 0, 'optim': 'rmsprop', 'batch_size': 128,
                                  'tenacity': 3, 'epoch_size': 2}
 # Set up logger

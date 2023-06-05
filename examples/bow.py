@@ -89,11 +89,11 @@ def batcher(params, batch):
             vec = np.zeros(params.wvec_dim)
             sentvec.append(vec)
         sentvec = np.mean(sentvec, 0)
-        print(f"batcher type:{type(sentvec)}")
+#         print(f"batcher type:{type(sentvec)}")
         embeddings.append(sentvec)
-    print(f"embedding shape1:{np.shape(embeddings)}")
+#     print(f"embedding shape1:{np.shape(embeddings)}")
     embeddings = np.vstack(embeddings)
-    print(f"embedding shape2:{np.shape(embeddings)}")
+#     print(f"embedding shape2:{np.shape(embeddings)}")
     return embeddings
 
 
