@@ -35,13 +35,13 @@ import senteval
 
 
 def prepare(params, samples):
-    logging.info(f"prepare:{samples}")
+#     logging.info(f"prepare:{samples}")
     params.infersent.build_vocab([' '.join(s) for s in samples], tokenize=False)
 
 
 def batcher(params, batch):
     
-    logging.info(f"batcher:{batch}")
+#     logging.info(f"batcher:{batch}")
     sentences = [' '.join(s) for s in batch]
     embeddings = params.infersent.encode(sentences, bsize=params.batch_size, tokenize=False)
     return embeddings
