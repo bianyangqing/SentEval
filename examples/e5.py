@@ -49,7 +49,7 @@ def batcher(params, batch):
     batch_dict = tokenizer(batch, max_length=512, padding=True, truncation=True, return_tensors='pt')
 
     outputs = model(**batch_dict)
-    embeddings = average_pool(outputs.last_hidden_state, batch_dict['attention_mask'])
+    embeddings = average_pool(outputs.last_hidden_state, batch_dict['attention_mask']).detach()
     
     print(f"batcher type:{type(embeddings)}")
     print(f"batcher embeddings:{np.shape(embeddings)}")
