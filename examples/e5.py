@@ -20,7 +20,7 @@ from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
 
 tokenizer = AutoTokenizer.from_pretrained('intfloat/e5-large-v2')
-model = AutoModel.from_pretrained('intfloat/e5-large-v2')
+model = AutoModel.from_pretrained('intfloat/e5-large-v2', device="cuda")
 
 # Set PATHs
 PATH_TO_SENTEVAL = '../'
@@ -51,8 +51,8 @@ def batcher(params, batch):
     outputs = model(**batch_dict)
     embeddings = average_pool(outputs.last_hidden_state, batch_dict['attention_mask']).detach()
     
-    print(f"batcher type:{type(embeddings)}")
-    print(f"batcher embeddings:{np.shape(embeddings)}")
+#     print(f"batcher type:{type(embeddings)}")
+#     print(f"batcher embeddings:{np.shape(embeddings)}")
     return embeddings
 
 
